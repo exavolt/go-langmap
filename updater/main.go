@@ -113,13 +113,4 @@ var Names = map[string]Name{
 
 func main() {
 	update()
-	return
-
-	// srcf, err := os.Open("../js/language-mapping-list.js")
-	// if err != nil {
-	// 	log.Fatal(err)
-	// }
-	// defer srcf.Close()
-
-	// processSource(srcf)
 }
