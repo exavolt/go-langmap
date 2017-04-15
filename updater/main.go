@@ -5,6 +5,7 @@ package main
 import (
 	"bufio"
 	"fmt"
+	"net/http"
 	"log"
 	"os"
 	"regexp"
@@ -12,25 +13,32 @@ import (
 
 // A tool to pull the data from Mozilla's repo and generate the Go code.
 //
-// https://raw.githubusercontent.com/mozilla/language-mapping-list/master/language-mapping-list.js
+// Usage, on the parent directory, run `$ go run updater/main.go > names.go`.
 
-//NOTE: ensure that the resulting code has no syntax errors, all correct, no
+//TODO: ensure that the resulting code has no syntax errors, all correct, no
 // formatting errors, no style errors. Ensure no complaints from gofmt, go vet
 // and golint.
-//
-//TODO: actual pull (from github, or even from npm). probably check github
-// release.
+//TODO: option to pull from npm?
+//TODO: attach the revision id or the hash of the content.
 //TODO: flags (URL)
 //TODO: use buffer for the output
 //TODO: optional test when done.
 //TODO: whitelisting. limit to certain languages.
 
-func main() {
-	srcf, err := os.Open("../js/language-mapping-list.js")
-	if err != nil {
-		log.Fatal(err)
+const sourceURL = "https://raw.githubusercontent.com/mozilla/language-mapping-list/master/language-mapping-list.js"
+
+func update() {
+	client := &http.Client{
 	}
-	defer srcf.Close()
+
+	resp, err := client.Get(sourceURL)
+	if err != nil {
+		panic(err)
+	}
+	defer resp.Body.Close()
+
+	etag := resp.Header.Get("Etag")
+	dateStr := resp.Header.Get("Date")
 
 	keyRE := regexp.MustCompile(`^\s*'(.*)':\s*{$`)
 	nativeNameRE := regexp.MustCompile(`^\s*nativeName\s*:\s*(.*)\s*,\s*$`)
@@ -41,15 +49,19 @@ func main() {
 
 	fmt.Fprintf(outf,
 		`// This file is generated. Do not edit directly.
+//
+// Source: %s
+// Etag: %s
+// Date: %s
 
 package langmap
 
 // Names contains the actual data.
 var Names = map[string]Name{
-`)
+`, resp.Request.URL.String(), etag, dateStr)
 
 	started := false
-	scanner := bufio.NewScanner(srcf)
+	scanner := bufio.NewScanner(resp.Body)
 	for scanner.Scan() {
 		if !started {
 			if scanner.Text() == "}(this, function() {" {
@@ -97,4 +109,17 @@ var Names = map[string]Name{
 	}
 
 	fmt.Fprintf(outf, "}\n")
+}
+
+func main() {
+	update()
+	return
+
+	// srcf, err := os.Open("../js/language-mapping-list.js")
+	// if err != nil {
+	// 	log.Fatal(err)
+	// }
+	// defer srcf.Close()
+
+	// processSource(srcf)
 }
