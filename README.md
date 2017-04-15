@@ -16,7 +16,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/exavolt/go.langmap"
+	"github.com/exavolt/go-langmap"
 )
 
 func main() {
