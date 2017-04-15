@@ -1,4 +1,8 @@
 // This file is generated. Do not edit directly.
+//
+// Source: https://raw.githubusercontent.com/mozilla/language-mapping-list/master/language-mapping-list.js
+// Etag: "71f4653b35272667f3edde50e504cc354197bad1"
+// Date: Sat, 15 Apr 2017 10:46:31 GMT
 
 package langmap
 
