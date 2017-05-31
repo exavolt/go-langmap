@@ -1,8 +1,8 @@
 // This file is generated. Do not edit directly.
 //
 // Source: https://raw.githubusercontent.com/mozilla/language-mapping-list/master/language-mapping-list.js
-// Etag: "71f4653b35272667f3edde50e504cc354197bad1"
-// Date: Sat, 15 Apr 2017 10:46:31 GMT
+// Etag: "fa8936ce08dd36b1a5f055661c77003827c19d69"
+// Date: Wed, 31 May 2017 18:39:38 GMT
 
 package langmap
 
@@ -740,6 +740,10 @@ var Names = map[string]Name{
 		"తెలుగు",
 		"Telugu",
 	},
+	"tg": {
+		"забо́ни тоҷикӣ́",
+		"Tajik",
+	},
 	"tg-TJ": {
 		"тоҷикӣ",
 		"Tajik",
@@ -799,6 +803,10 @@ var Names = map[string]Name{
 	"uz-UZ": {
 		"O'zbek",
 		"Uzbek",
+	},
+	"vi": {
+		"Tiếng Việt",
+		"Vietnamese",
 	},
 	"vi-VN": {
 		"Tiếng Việt",
