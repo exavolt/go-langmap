@@ -1,8 +1,8 @@
 // This file is generated. Do not edit directly.
 //
 // Source: https://raw.githubusercontent.com/mozilla/language-mapping-list/master/language-mapping-list.js
-// Etag: "fa8936ce08dd36b1a5f055661c77003827c19d69"
-// Date: Wed, 31 May 2017 18:39:38 GMT
+// Etag: W/"d256b1f69531dd127aae9bd1a34c487c6957db79228248cafc60a9e1b49eafbe"
+// Date: Mon, 11 May 2020 19:07:16 GMT
 
 package langmap
 
@@ -95,6 +95,10 @@ var Names = map[string]Name{
 	"ca-ES": {
 		"Català",
 		"Catalan",
+	},
+	"cak": {
+		"Maya Kaqchikel",
+		"Kaqchikel",
 	},
 	"ck-US": {
 		"ᏣᎳᎩ (tsalagi)",

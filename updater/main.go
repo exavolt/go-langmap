@@ -5,8 +5,8 @@ package main
 import (
 	"bufio"
 	"fmt"
-	"net/http"
 	"log"
+	"net/http"
 	"os"
 	"regexp"
 )
@@ -28,8 +28,7 @@ import (
 const sourceURL = "https://raw.githubusercontent.com/mozilla/language-mapping-list/master/language-mapping-list.js"
 
 func update() {
-	client := &http.Client{
-	}
+	client := &http.Client{}
 
 	resp, err := client.Get(sourceURL)
 	if err != nil {
